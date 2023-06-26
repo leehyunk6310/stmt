@@ -21,4 +21,15 @@ data class Student(
     var tel: String,
 
     var classId: Long
-)
+
+
+) {
+    // id 값을 가지지 않는 생성자
+    constructor(
+        studentName: String,
+        tel: String,
+        school: String,
+        grade: String,
+        gradeDetail: Int,
+    ) : this(0, studentName, school, grade, gradeDetail, tel, 0)
+}

@@ -9,13 +9,13 @@ import androidx.room.Update
 @Dao
 interface StudentDao {
     @Insert
-    fun addStudent(studentDto: Student)
+    suspend fun addStudent(studentDto: Student)
 
     @Query("SELECT * FROM students WHERE id = :id")
     fun findStudentById(id: String): Student
 
     @Query("SELECT * FROM students")
-    fun getAllStudents(): List<Student>
+    suspend fun getAllStudents(): List<Student>
 
     @Update
     fun updateStudent(studentDto: Student)
