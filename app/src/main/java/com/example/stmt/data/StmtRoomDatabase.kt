@@ -4,11 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.stmt.data.lesson.Lesson
+import com.example.stmt.data.lesson.LessonDao
+import com.example.stmt.data.student.Student
+import com.example.stmt.data.student.StudentDao
 
 @Database(entities = [(Student::class)], version = 1)
 abstract class StmtRoomDatabase :RoomDatabase(){
     abstract fun studentDao(): StudentDao
-
+//    abstract fun lessonDao(): LessonDao
     companion object {
         /*The value of a volatile variable will never be cached, and all writes and reads will be done to and from the main memory.
         This helps make sure the value of INSTANCE is always up-to-date and the same for all execution threads.

@@ -1,4 +1,4 @@
-package com.example.stmt.data
+package com.example.stmt.data.student
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -22,5 +22,5 @@ interface StudentDao {
     fun updateStudent(studentDto: Student)
 
     @Delete
-    fun deleteStudent(studentDto: Student)
+    suspend fun deleteStudent(studentDto: Student)
 }

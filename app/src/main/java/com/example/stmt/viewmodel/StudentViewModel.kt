@@ -6,8 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.stmt.data.StmtRepository
 import com.example.stmt.data.StmtRoomDatabase
-import com.example.stmt.data.Student
-import kotlinx.coroutines.flow.Flow
+import com.example.stmt.data.student.Student
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -34,6 +33,12 @@ class StudentViewModel(application: Application) : AndroidViewModel(application)
                 Log.d(TAG, "getAllStudents: $students")
                 _students.value = students
             }
+        }
+    }
+
+    fun deleteStudent(student: Student) {
+        viewModelScope.launch {
+            stmtRepository.deleteStudent(student)
         }
     }
 }

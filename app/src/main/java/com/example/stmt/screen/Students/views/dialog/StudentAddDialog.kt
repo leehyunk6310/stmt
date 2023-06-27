@@ -43,7 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.stmt.data.Student
+import com.example.stmt.data.student.Student
 import com.example.stmt.screen.Students.views.GradeChip
 import com.example.stmt.viewmodel.AddDialogViewModel
 import com.example.stmt.viewmodel.StudentViewModel

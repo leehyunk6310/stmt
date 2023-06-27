@@ -1,4 +1,4 @@
-package com.example.stmt.data
+package com.example.stmt.data.student
 
 import androidx.annotation.NonNull
 import androidx.room.Entity
