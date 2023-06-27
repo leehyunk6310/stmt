@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,14 +27,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.stmt.data.Student
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StudentItem(grade: String) {
-    val color = if (grade == "초등") Color.Yellow else if (grade == "중등") Color.Blue else Color.Red
+fun StudentItem(student: Student) {
+    val color =
+        if (student.grade == "초등학생") Color.Yellow else if (student.grade == "중학생") Color.Blue else if (student.grade == "고등학생") Color.Red else Color.White
 
     Card(
         onClick = { /* Do something */ },
@@ -46,9 +50,10 @@ fun StudentItem(grade: String) {
                 .fillMaxSize(),
         ) {
             Row(
-                Modifier.fillMaxSize().padding(horizontal = 8.dp),
+                Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Box(
@@ -57,10 +62,22 @@ fun StudentItem(grade: String) {
                             .height(24.dp)
                             .clip(RoundedCornerShape(16.dp))
                             .background(color = color)
-                            )
-                    Text("이름", fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(start = 16.dp))
+                    )
+                    Text(
+                        student.studentName,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        modifier = Modifier.padding(start = 16.dp)
+                    )
                 }
-                Text("학교", fontSize = 12.sp, modifier = Modifier.padding(start = 12.dp, bottom = 4.dp).align(Bottom))
+                Text(
+                    student.school, fontSize = 12.sp, modifier = Modifier
+                        .padding(bottom = 4.dp, end = 16.dp)
+                        .align(Bottom)
+                        .weight(1f)
+                        ,
+                    textAlign = TextAlign.Right
+                )
                 Icon(imageVector = Icons.Default.Cancel, contentDescription = "delete")
 
             }
@@ -71,5 +88,43 @@ fun StudentItem(grade: String) {
 @Preview
 @Composable
 fun StudentItemPrev() {
-    StudentItem("초등")
+    Column() {
+        StudentItem(
+            Student(
+                studentName = "김감자",
+                tel = "",
+                school = "감자중학교",
+                grade = "중학생",
+                gradeDetail = 6
+            )
+        )
+        StudentItem(
+            Student(
+                studentName = "김고구",
+                tel = "",
+                school = "고구마고등학교",
+                grade = "고등학생",
+                gradeDetail = 6
+            )
+        )
+        StudentItem(
+            Student(
+                studentName = "김감자",
+                tel = "",
+                school = "감자중학교",
+                grade = "중학생",
+                gradeDetail = 6
+            )
+        )
+        StudentItem(
+            Student(
+                studentName = "김감자",
+                tel = "",
+                school = "감자중학교",
+                grade = "중학생",
+                gradeDetail = 6
+            )
+        )
+    }
+
 }

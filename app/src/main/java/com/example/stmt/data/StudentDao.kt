@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface StudentDao {
@@ -15,7 +16,7 @@ interface StudentDao {
     fun findStudentById(id: String): Student
 
     @Query("SELECT * FROM students")
-    suspend fun getAllStudents(): List<Student>
+    fun getAllStudents(): Flow<List<Student>>
 
     @Update
     fun updateStudent(studentDto: Student)
