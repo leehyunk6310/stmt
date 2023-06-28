@@ -44,8 +44,8 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.stmt.data.student.Student
-import com.example.stmt.screen.Students.views.GradeChip
-import com.example.stmt.viewmodel.AddDialogViewModel
+import com.example.stmt.screen.Students.views.FilterChips
+import com.example.stmt.viewmodel.AddStudentViewModel
 import com.example.stmt.viewmodel.StudentViewModel
 import kotlinx.coroutines.launch
 
@@ -79,7 +79,7 @@ fun StudentAddDialog(onDismiss: () -> Unit) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DialogTop(onDismiss: () -> Unit) {
-    val addDialogViewModel: AddDialogViewModel = viewModel()
+    val addStudentViewModel: AddStudentViewModel = viewModel()
     val studentViewModel: StudentViewModel = viewModel()
     val coroutineScope = rememberCoroutineScope()
 
@@ -103,11 +103,11 @@ fun DialogTop(onDismiss: () -> Unit) {
             TextButton(onClick = {
                 coroutineScope.launch{
                     val newStudent = Student(
-                        addDialogViewModel.name.value,
-                        addDialogViewModel.tel.value,
-                        addDialogViewModel.school.value,
-                        addDialogViewModel.grade.value,
-                        addDialogViewModel.gradeDetail.value
+                        addStudentViewModel.name.value,
+                        addStudentViewModel.tel.value,
+                        addStudentViewModel.school.value,
+                        addStudentViewModel.grade.value,
+                        addStudentViewModel.gradeDetail.value
                     )
 
                     studentViewModel.addStudent(newStudent)
@@ -124,34 +124,34 @@ fun DialogTop(onDismiss: () -> Unit) {
 fun GradeChipsAddDialog(modifier: Modifier) {
     var selectedGradeNumber by remember { mutableStateOf(0) }
     var selectedGradeDetailNumber by remember { mutableStateOf(0) }
-    val viewModel: AddDialogViewModel = viewModel()
+    val viewModel: AddStudentViewModel = viewModel()
 
     Column() {
         Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            GradeChip(name = "초등학생", onClick = {
+            FilterChips(name = "초등학생", onClick = {
                 selectedGradeNumber = 1
                 viewModel.setGrade("초등학생")
             }, selected = selectedGradeNumber == 1)
-            GradeChip(name = "중학생", onClick = {
+            FilterChips(name = "중학생", onClick = {
                 selectedGradeNumber = 2
                 viewModel.setGrade("중학생")
             }, selected = selectedGradeNumber == 2)
-            GradeChip(name = "고등학생", onClick = {
+            FilterChips(name = "고등학생", onClick = {
                 selectedGradeNumber = 3
                 viewModel.setGrade("고등학생")
             }, selected = selectedGradeNumber == 3)
         }
 
         Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            GradeChip(name = "1학년", onClick = {
+            FilterChips(name = "1학년", onClick = {
                 selectedGradeDetailNumber = 1
                 viewModel.setGradeDetail(1)
             }, selected = selectedGradeDetailNumber == 1)
-            GradeChip(name = "2학년", onClick = {
+            FilterChips(name = "2학년", onClick = {
                 selectedGradeDetailNumber = 2
                 viewModel.setGradeDetail(2)
             }, selected = selectedGradeDetailNumber == 2)
-            GradeChip(name = "3학년", onClick = {
+            FilterChips(name = "3학년", onClick = {
                 selectedGradeDetailNumber = 3
                 viewModel.setGradeDetail(3)
             }, selected = selectedGradeDetailNumber == 3)
@@ -161,15 +161,15 @@ fun GradeChipsAddDialog(modifier: Modifier) {
         // 초등학생인 경우 표시
         if (selectedGradeNumber == 1) {
             Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                GradeChip(name = "4학년", onClick = {
+                FilterChips(name = "4학년", onClick = {
                     selectedGradeDetailNumber = 4
                     viewModel.setGradeDetail(4)
                 }, selected = selectedGradeDetailNumber == 4)
-                GradeChip(name = "5학년", onClick = {
+                FilterChips(name = "5학년", onClick = {
                     selectedGradeDetailNumber = 5
                     viewModel.setGradeDetail(5)
                 }, selected = selectedGradeDetailNumber == 5)
-                GradeChip(name = "6학년", onClick = {
+                FilterChips(name = "6학년", onClick = {
                     selectedGradeDetailNumber = 6
                     viewModel.setGradeDetail(6)
                 }, selected = selectedGradeDetailNumber == 6)
@@ -181,7 +181,7 @@ fun GradeChipsAddDialog(modifier: Modifier) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StudentInfo(modifier: Modifier) {
-    val viewModel: AddDialogViewModel = viewModel()
+    val viewModel: AddStudentViewModel = viewModel()
 
     var backgroundColor =
         if (viewModel.grade.collectAsState().value == "초등학생") Color.Yellow

@@ -20,7 +20,7 @@ data class Student(
 
     var tel: String,
 
-    var classId: Long
+    var classId: Int
 
 
 ) {

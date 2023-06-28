@@ -1,11 +1,9 @@
 package com.example.stmt.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class AddDialogViewModel(): ViewModel() {
+class AddStudentViewModel(): ViewModel() {
     // <editor-fold desc = "등록할 때 필요한 데이터"
     private val _name = MutableStateFlow("")
     private val _tel = MutableStateFlow("")
